@@ -95,7 +95,19 @@ def compPlayHand(hand, wordList, n):
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
     print('Total score: ' + str(totalScore) + ' points.')
 
-    
+def get_player(hand, wordList):
+    while True:
+        player = input("Enter u to have yourself play, c to have the computer play: ").lower()
+        if player == "u":
+            playHand(hand, wordList, HAND_SIZE)
+        elif player == "c":
+            compPlayHand(hand, wordList, HAND_SIZE)
+        else:
+            print("Invalid command.")
+            continue
+
+        break
+        
 #
 # Problem #6: Playing a game
 #
@@ -124,10 +136,23 @@ def playGame(wordList):
 
     wordList: list (string)
     """
-    # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
-        
+    hand = []
+    
+    while True:
+        user_input = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ").lower()
+        if user_input == "n":
+            hand = dealHand(HAND_SIZE)
+            get_player(hand, wordList)
+        elif user_input == "r":
+            if hand:
+                get_player(hand, wordList)
+            else:
+                print("You have not played a hand yet. Please play a new hand first!")
+                continue
+        elif user_input == "e":
+            break
+        else:
+            print("Invalid command.")
 #
 # Build data structures used for entire session and play game
 #
