@@ -171,7 +171,20 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    word = word.lower()
+    assert not (len(word) == 0), "isValidWord: 'word' cannot be 0 length!"
+    
+    # Check that word is in wordList
+    if not word in wordList:
+        return False
+    
+    # Check that word is made up of letters in hand, including sufficient count
+    word_freq_dict = getFrequencyDict(word)
+    for k, v in word_freq_dict.items():
+        if hand.get(k, 0) < v:
+            return False
+    
+    return True
 
 
 #
