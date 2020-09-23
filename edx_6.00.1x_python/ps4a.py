@@ -149,8 +149,12 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    word = word.lower()
+    new_hand = dict(hand)   # Create a *COPY* of the original hand.
+    for c in word:
+        new_hand[c] -= 1    # Decrement count for letter in copy of dictionary.
+    
+    return new_hand
 
 
 #
