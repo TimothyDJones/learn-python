@@ -108,10 +108,10 @@ def show_some(player, dealer):
     print(" ({0})".format(player.value))
 
 def show_all(player, dealer):
-    print("\nDealer's hand:", *dealer.cards, sep=" ")
-    print("\tDealer's hand = {0}".format(dealer.value))
-    print("\nPlayer's hand: ", *player.cards, sep=" ")
-    print("\tPlayer's hand = {0}".format(player.value))
+    print("\nDealer's hand:", *dealer.cards, sep=" ", end="")
+    print(" ({0})".format(dealer.value))
+    print("\nPlayer's hand: ", *player.cards, sep=" ", end="")
+    print("({0})".format(player.value))
 
 def player_busts(player, dealer, chips):
     print("Player busts!")
@@ -123,7 +123,7 @@ def player_wins(player, dealer, chips):
 
 def dealer_busts(player, dealer, chips):
     print("Dealer busts!")
-    chips.lose_bet()
+    chips.win_bet()
 
 def dealer_wins(player, dealer, chips):
     print("Dealer wins!")
