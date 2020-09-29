@@ -101,9 +101,8 @@ def hit_or_stand(deck, hand):
         break
 
 def show_some(player, dealer):
-    print("\nDealer's hand:")
-    print("\t<card hidden> ")
-    print("\t", dealer.cards[1])
+    print("\nDealer's hand: ", end="")
+    print("<card hidden> ", dealer.cards[1])
     print("\nPlayer's hand: ", *player.cards, sep=" ", end="")
     print(" ({0})".format(player.value))
 
@@ -111,7 +110,7 @@ def show_all(player, dealer):
     print("\nDealer's hand:", *dealer.cards, sep=" ", end="")
     print(" ({0})".format(dealer.value))
     print("\nPlayer's hand: ", *player.cards, sep=" ", end="")
-    print("({0})".format(player.value))
+    print(" ({0})".format(player.value))
 
 def player_busts(player, dealer, chips):
     print("Player busts!")
