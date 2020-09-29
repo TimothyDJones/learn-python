@@ -188,11 +188,17 @@ while True:
     print("\nPlayer's winnings stand at {0} chips.".format(player_chips.total))
     
     # Ask player if they want to play again
-    new_game = input("Play again (y/n)? ")
-    if new_game[0].lower() == 'y':
-        playing = True
-        continue
+    if player_chips.total > 0:
+        new_game = input("Play again (y/n)? ")
+        if new_game[0].lower() == 'y':
+            playing = True
+            continue
+        else:
+            print("Thanks for playing! Goodbye.")
+            break
     else:
+        print("Sorry, but you are out of chips.")
         print("Thanks for playing! Goodbye.")
         break
+        
 
