@@ -52,6 +52,11 @@ def get_story_string():
     story = str(f.read())
     f.close()
     return story
+    
+def decrypt_story():
+    encrypted_story = get_story_string()
+    decrypted_story = CiphertextMessage(encrypted_story)
+    return decrypted_story.decrypt_message()
 
 WORDLIST_FILENAME = 'words.txt'
 
@@ -173,7 +178,7 @@ class PlaintextMessage(Message):
         Returns: a COPY of self.encrypting_dict
         '''
         # pass #delete this line and replace with your code here
-        return self.encrypting_dict[:]
+        return {**self.encrypting_dict}
 
     def get_message_text_encrypted(self):
         '''
@@ -211,7 +216,8 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        # pass #delete this line and replace with your code here
+        Message.__init__(self, text)
 
     def decrypt_message(self):
         '''
@@ -229,7 +235,21 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        # pass #delete this line and replace with your code here
+        word_count = {}
+        for s in range(26):
+            decrypt_candidate = self.apply_shift(s)
+            candidate_words = decrypt_candidate.split()
+            num_valid_words = 0
+            for word in candidate_words:
+                if is_word(self.get_valid_words(), word):
+                    num_valid_words += 1
+            word_count[s] = num_valid_words
+        
+        max_valid_words = max(list(word_count.values()))
+        for k, v in word_count.items():
+            if v == max_valid_words:
+                return (k, self.apply_shift(k))
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
@@ -244,6 +264,9 @@ print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
 text = Message('Hello, World!')
-print(text.apply_shift(2))
+print(text.apply_shift(7))
 
+text2 = CiphertextMessage('Olssv, Dvysk!')
+print(text2.decrypt_message())
 
+print(decrypt_story())
