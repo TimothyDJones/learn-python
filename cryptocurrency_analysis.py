@@ -19,7 +19,7 @@ def dt_day_num_to_day_name(number):
     ]
     return days[number]
 
-api_key = "E10189E9-35FD-4F59-9B0A-543F2A857AE5"
+api_key = "API_KEY_HERE"
 
 # "https://rest.coinapi.io/v1/ohlcv/LTC/USD/history?period_id=1DAY&time_start=2015-01-01T00:00:00&time_end=2020-10-31T23:59:00&limit=100000"
 url_template = "https://rest.coinapi.io/v1/ohlcv/{}/{}/history?period_id=1DAY&time_start={}T00:00:00&time_end={}T23:59:00&limit={}"
