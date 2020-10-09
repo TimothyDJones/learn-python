@@ -15,15 +15,10 @@ def format_duration(seconds):
     
     time_dict = {"minute": 60, "hour": (60*60), "day": (24*60*60), "year": (365*24*60*60)}
 
-    years = seconds // time_dict["year"]
-    time_left = seconds % time_dict["year"]
-    days = time_left // time_dict["day"]
-    time_left = time_left % time_dict["day"]
-    hours = time_left // time_dict["hour"]
-    time_left = time_left % time_dict["hour"]
-    minutes = time_left // time_dict["minute"]
-    seconds = time_left % time_dict["minute"]
-    #print(years, days, hours, minutes, seconds)
+    years, time_left = divmod(seconds, time_dict["year"])
+    days, time_left = divmod(time_left, time_dict["day"])
+    hours, time_left = divmod(time_left, time_dict["hour"])
+    minutes, seconds = divmod(time_left, time_dict["minute"])
     
     result = y = d = h = m = s = ""
     if years: y = format_unit(years, "year")
@@ -41,4 +36,4 @@ def format_duration(seconds):
 if __name__ == "__main__":
     print(format_duration(1))
     print(format_duration(60))
-    print(format_duration(3662))
+    print(format_duration(3762+86400))
