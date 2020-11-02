@@ -1,3 +1,6 @@
+# rpn_calculator.py
+# http://www.math.bas.bg/bantchev/place/rpn/rpn.python.html
+
 import operator
 ops = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.truediv}
 while True:
